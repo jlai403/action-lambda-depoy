@@ -11,15 +11,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     strategy:
       matrix:
         node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-        fetch-depth: 0             # otherwise, you will fail to push refs to dest repo
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
