@@ -1,0 +1,20 @@
+name: 'Deploy code to AWS lambda function'
+description: 'Deploys code to an AWS lambda function'
+inputs:
+  zip-location:
+    description: 'location of .zip containing code for lambda'
+    required: true
+  function-name:
+    description: 'The name of the lambda function to update'
+    required: true
+  publish-new-version:
+    description: 'True if you would like the action to publish a new version'
+    required: false
+    default: false
+  architecture:
+    description: 'Architecture of the lambda. (arm64 or x86_64)'
+    required: false
+    default: 'x86_64'
+runs:
+  using: 'node18'
+  main: 'dist/index.js' 
