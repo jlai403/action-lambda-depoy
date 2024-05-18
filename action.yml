@@ -1,6 +1,9 @@
 name: 'Deploy code to AWS lambda function'
 description: 'Deploys code to an AWS lambda function'
 inputs:
+  aws-region:
+    description: 'AWS region'
+    required: true
   zip-location:
     description: 'location of .zip containing code for lambda'
     required: true

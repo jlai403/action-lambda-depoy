@@ -4,11 +4,13 @@ import { readFile } from 'fs/promises';
 
 async function runAction(): Promise<void> {
 	try {
-		const client = new LambdaClient({ region: 'us-east-1', customUserAgent: 'github-action-lambda-deploy' });
 
+		const awsRegion = core.getInput('aws-region', { required: true });
 		const functionName = core.getInput('function-name', { required: true });
 		const zipLocation = core.getInput('zip-location', { required: true });
 		const architectureInput = core.getInput('architecture');
+
+		const client = new LambdaClient({ region: awsRegion, customUserAgent: 'github-action-lambda-deploy' });
 
 		const architecture = architectureInput === 'arm64' ? Architecture.arm64 : Architecture.x86_64;
 
