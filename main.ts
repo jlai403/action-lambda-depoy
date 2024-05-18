@@ -33,3 +33,4 @@ async function runAction(): Promise<void> {
 }
 
 export default runAction;
+void runAction();
