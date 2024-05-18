@@ -50848,10 +50848,11 @@ function runAction() {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
         try {
-            const client = new client_lambda_1.LambdaClient({ region: 'us-east-1', customUserAgent: 'github-action-lambda-deploy' });
+            const awsRegion = core.getInput('aws-region', { required: true });
             const functionName = core.getInput('function-name', { required: true });
             const zipLocation = core.getInput('zip-location', { required: true });
             const architectureInput = core.getInput('architecture');
+            const client = new client_lambda_1.LambdaClient({ region: awsRegion, customUserAgent: 'github-action-lambda-deploy' });
             const architecture = architectureInput === 'arm64' ? client_lambda_1.Architecture.arm64 : client_lambda_1.Architecture.x86_64;
             const zipBuffer = yield (0, promises_1.readFile)(zipLocation);
             const updateLambdaCodeRequest = {
